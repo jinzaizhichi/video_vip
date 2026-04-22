@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name              全网VIP视频免费破解去广告【最新3.1】
 // @namespace         video_vip
-// @version           3.1.0
+// @version           3.1.1
 // @description       全网VIP视频免费破解去广告，适配PC+移动，全网VIP视频解析：爱奇艺、腾讯、优酷、bilibili等视频免费解析！🔥真4K高清🔥【脚本长期维护更新，完全免费，无广告，仅限学习交流！！】
 // @icon              https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/favicon.67xwxgc03y.svg
 // @author            茉灵智库：https://blog.88lin.eu.org/article/46
@@ -50,8 +50,8 @@
 // @grant             GM_xmlhttpRequest
 // @charset		      UTF-8
 // @license           GPL License
-// @downloadURL https://cdn.jsdmirror.com/gh/88lin/video_vip@master/video_vip.user.js
-// @updateURL https://cdn.jsdmirror.com/gh/88lin/video_vip@master/video_vip.user.js
+// @downloadURL https://cdn.jsdmirror.com/gh/88lin/video_vip@main/video_vip.user.js
+// @updateURL https://cdn.jsdmirror.com/gh/88lin/video_vip@main/video_vip.user.js
 // ==/UserScript==
 
 const util = (function () {
@@ -124,6 +124,7 @@ const superVip = (function () {
         autoPlayerVal: "auto_player_value_" + window.location.host,
         videoParseList: [
             {"name": "默认A", "type": "1,3", "url": "https://json.fongmi.cc/web?url="},
+            {"name": "默认B", "type": "1,3", "url": "https://super.playr.top/?url="},
             {"name": "CK解析", "type": "1,3", "url": "https://www.ckplayer.vip/jiexi/?url="},
 			{"name": "Player-JY", "type": "1,3", "url": "https://jx.playerjy.com/?url="},
             {"name": "虾米解析", "type": "1,3", "url": "https://jx.xmflv.com/?url="},
