@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name              全网VIP视频免费破解去广告【最新3.1】
 // @namespace         video_vip
-// @version           3.1.1
+// @version           3.1.2
 // @description       全网VIP视频免费破解去广告，适配PC+移动，全网VIP视频解析：爱奇艺、腾讯、优酷、bilibili等视频免费解析！🔥真4K高清🔥【脚本长期维护更新，完全免费，无广告，仅限学习交流！！】
 // @icon              https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/favicon.67xwxgc03y.svg
 // @author            茉灵智库：https://blog.88lin.eu.org/article/46
@@ -215,16 +215,26 @@ const superVip = (function () {
 
         generateElement(container) {
             GM_addStyle(`
-                        #${_CONFIG_.vipBoxId} {cursor:pointer; position:fixed; top:120px; left:0px; z-index:2147483647; text-align:left; display:block !important; visibility:visible !important; opacity:1 !important; pointer-events:auto !important;}
-                        #${_CONFIG_.vipBoxId} .img_box{width:32px; height:32px;line-height:32px;text-align:center;background-color:#7d4aee;margin:5px 0px;}
-                        #${_CONFIG_.vipBoxId} .vip_list {display:none; position:absolute; border-radius:5px; left:32px; top:0; text-align:center; background-color: #3f4149; border:1px solid white;padding:10px 0px; width:380px; max-height:400px; overflow-y:auto;}
-                        #${_CONFIG_.vipBoxId} .vip_list li{border-radius:2px; font-size:12px; color:#E6E6E6; text-align:center; width:calc(25% - 14px); line-height:21px; float:left; border:1px solid gray; padding:0 4px; margin:4px 2px;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;-o-text-overflow:ellipsis;}
-                        #${_CONFIG_.vipBoxId} .vip_list li:hover{color:#00dffc; border:1px solid #00dffc;}
-                        #${_CONFIG_.vipBoxId} .vip_list ul{padding-left: 10px;}
+                        #${_CONFIG_.vipBoxId} {cursor:pointer; position:fixed; top:120px; left:0px; z-index:2147483647; text-align:left; display:block !important; visibility:visible !important; opacity:1 !important; pointer-events:auto !important; font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei","Segoe UI",sans-serif;}
+                        #${_CONFIG_.vipBoxId} .img_box{width:32px; height:32px;line-height:32px;text-align:center;color:#fff7ed !important;background:#334155;border:1px solid rgba(255,255,255,.18);box-shadow:0 5px 16px rgba(2,8,23,.3),inset 0 1px 0 rgba(255,255,255,.16);margin:3px 0px;border-radius:9px !important;}
+                        #${_CONFIG_.vipBoxId} .vip_icon > .img_box{background:#6d28d9;border-color:#a78bfa;box-shadow:0 5px 16px rgba(109,40,217,.34),inset 0 1px 0 rgba(255,255,255,.18);}
+                        #${_CONFIG_.vipBoxId} #vip_auto{color:#f5f3ff !important;background:#4338ca;border-color:#a5b4fc;box-shadow:0 5px 16px rgba(67,56,202,.3),inset 0 1px 0 rgba(255,255,255,.18);}
+                        #${_CONFIG_.vipBoxId} #vip_reload{color:#fff1f2 !important;background:#be123c;border-color:#fda4af;box-shadow:0 5px 16px rgba(190,18,60,.28),inset 0 1px 0 rgba(255,255,255,.18);}
+                        #${_CONFIG_.vipBoxId} .vip_list {display:none; position:absolute; border-radius:10px; left:36px; top:-30px; text-align:center; background:#071827; border:1px solid #0ea5e9;box-shadow:0 12px 30px rgba(2,12,27,.5);padding:10px 0px; width:380px; max-height:420px; overflow-y:auto;}
+                        #${_CONFIG_.vipBoxId} .vip_list li{border-radius:5px; font-size:12px; color:#e0f7ff; text-align:center; width:calc(25% - 14px); line-height:22px; float:left; border:1px solid #155e75; background:#0b2942; padding:0 4px; margin:4px 2px;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;-o-text-overflow:ellipsis;}
+                        #${_CONFIG_.vipBoxId} .vip_list li:hover{color:#ffffff; border:1px solid #38bdf8; background:#0e7490;}
+                        #${_CONFIG_.vipBoxId} .vip_list ul{padding-left: 10px; margin:0 0 4px 0;}
+                        #${_CONFIG_.vipBoxId} .vip_list b{color:#7dd3fc;}
                         #${_CONFIG_.vipBoxId} .vip_list::-webkit-scrollbar{width:5px; height:1px;}
-                        #${_CONFIG_.vipBoxId} .vip_list::-webkit-scrollbar-thumb{box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.2); background:#B8B8B8;}
-                        #${_CONFIG_.vipBoxId} .vip_list::-webkit-scrollbar-track{box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.2); background:#F5F5F5;}
-                        #${_CONFIG_.vipBoxId} li.selected{color:#00dffc; border:1px solid #00dffc;}
+                        #${_CONFIG_.vipBoxId} .vip_list::-webkit-scrollbar-thumb{box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.2); background:#0ea5e9;}
+                        #${_CONFIG_.vipBoxId} .vip_list::-webkit-scrollbar-track{box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.2); background:#03111f;}
+                        #${_CONFIG_.vipBoxId} li.selected{color:#ffffff; border:1px solid #7dd3fc; background:#075985;}
+                        @media (max-width: 520px) {
+                            #${_CONFIG_.vipBoxId} .vip_list {left:38px; top:-30px; width:calc(100vw - 48px); max-width:360px; max-height:70vh; box-sizing:border-box;}
+                            #${_CONFIG_.vipBoxId} .vip_list li{width:calc(50% - 14px); line-height:28px; font-size:13px;}
+                            #${_CONFIG_.vipBoxId} .vip_list ul{padding-left:8px;}
+                            #${_CONFIG_.vipBoxId} .vip_list h3{font-size:14px !important; padding:4px 0px !important;}
+                        }
 						`);
 
             let type_1_str = "";
@@ -247,23 +257,23 @@ const superVip = (function () {
             $(container).append(`
                 <div id="${_CONFIG_.vipBoxId}">
                     <div class="vip_icon">
-                        <div class="img_box" title="选择解析源" style="color:white;font-size:16px;font-weight:bold;border-radius:5px;"><span style="color: red;">V</span>I<span style="color: yellow;">P</span></div>
+                        <div class="img_box" title="选择解析源" style="color:white;font-size:16px;font-weight:bold;border-radius:5px;"><span style="color:#ffe4e6;">V</span>I<span style="color:#fde68a;">P</span></div>
                         <div class="vip_list">
                             <div>
-                                <h3 style="color:#00dffc; font-weight: bold; font-size: 16px; padding:5px 0px;">[内嵌播放]</h3>
+                                <h3 style="color:#7dd3fc; font-weight: bold; font-size: 16px; padding:5px 0px;">[内嵌播放]</h3>
                                 <ul>
                                     ${type_1_str}
                                     <div style="clear:both;"></div>
                                 </ul>
                             </div>
                             <div>
-                                <h3 style="color:#00dffc; font-weight: bold; font-size: 16px; padding:5px 0px;">[弹窗播放不带选集]</h3>
+                                <h3 style="color:#7dd3fc; font-weight: bold; font-size: 16px; padding:5px 0px;">[弹窗播放不带选集]</h3>
                                 <ul>
                                     ${type_3_str}
                                     <div style="clear:both;"></div>
                                 </ul>
                             </div>
-                            <div style="text-align:left;color:#FFF;font-size:10px;padding:0px 10px;margin-top:10px;">
+                            <div style="text-align:left;color:#b7d7e8;font-size:10px;padding:0px 10px;margin-top:10px;">
                                 <b>功能说明：</b>
                                 <br>&nbsp;&nbsp;1、公益脚本，完全免费，请勿上当受骗
                                 <br>&nbsp;&nbsp;2、自动解析功能默认关闭（自动解析只支持内嵌播放源）
@@ -274,8 +284,26 @@ const superVip = (function () {
                         </div>
                     </div>
                     <div class="img_box" id="vip_auto" style="color:white;font-size:16px;font-weight:bold;border-radius:5px;" title="是否打开自动解析。若自动解析失败，请手动选择其它接口尝试！！">${autoPlay}</div>
+                    <div class="img_box" id="vip_reload" style="color:white;font-size:14px;font-weight:bold;border-radius:5px;" title="刷新当前解析画面">刷</div>
                 </div>`);
             return new Promise((resolve, reject) => resolve(container));
+        }
+
+        reloadCurrentPlayer() {
+            const iframe = document.querySelector(`.${_CONFIG_.iframeWrapperClass} iframe`);
+            if (iframe && iframe.src) {
+                iframe.src = iframe.src;
+                return;
+            }
+            const selectedItem = document.querySelector(`#${_CONFIG_.vipBoxId} .vip_list .nq-li.selected`);
+            if (!selectedItem) {
+                return;
+            }
+            const index = parseInt(selectedItem.getAttribute("data-index"), 10);
+            const videoObj = _CONFIG_.videoParseList[index];
+            if (videoObj && videoObj.type.includes("1")) {
+                this.showPlayerWindow(videoObj);
+            }
         }
 
         bindEvent(container) {
@@ -288,6 +316,10 @@ const superVip = (function () {
             }
 
             let _this = this;
+            vipBox.find("#vip_reload").on("click", (event) => {
+                event.stopPropagation();
+                this.reloadCurrentPlayer();
+            });
             vipBox.find(".vip_list .nq-li").each((liIndex, item) => {
                 item.addEventListener("click", () => {
                     const index = parseInt($(item).attr("data-index"));
