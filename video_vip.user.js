@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name              全网VIP视频免费破解去广告【最新3.1】
 // @namespace         video_vip
-// @version           3.1.2
+// @version           3.1.3
 // @description       全网VIP视频免费破解去广告，适配PC+移动，全网VIP视频解析：爱奇艺、腾讯、优酷、bilibili等视频免费解析！🔥真4K高清🔥【脚本长期维护更新，完全免费，无广告，仅限学习交流！！】
 // @icon              https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/favicon.67xwxgc03y.svg
 // @author            茉灵智库：https://blog.88lin.eu.org/article/46
@@ -189,6 +189,85 @@ const superVip = (function () {
             {host: "www.1905.com", container: "#player,#vodPlayer", name: "Default", displayNodes: []},
         ]
     };
+
+    function buildPlayerFrameLayout({isMobile, containerRect = {}, containerStyle = {}, viewportHeight = 0}) {
+        const parsePixelValue = (value) => {
+            const parsedValue = Number.parseFloat(value);
+            return Number.isFinite(parsedValue) ? parsedValue : 0;
+        };
+
+        if (!isMobile) {
+            return {
+                containerStyles: {
+                    overflow: "hidden"
+                },
+                wrapperStyles: {
+                    position: "absolute",
+                    top: "0",
+                    left: "0",
+                    width: "100%",
+                    height: "100%",
+                    background: "#000",
+                    overflow: "hidden",
+                    zIndex: "2147483646"
+                },
+                iframeStyles: {
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                    display: "block",
+                    background: "#000"
+                }
+            };
+        }
+
+        const width = parsePixelValue(containerRect.width);
+        const height = parsePixelValue(containerRect.height);
+        const paddingTop = parsePixelValue(containerStyle.paddingTop);
+        const ratioHeight = width > 0 ? Math.round((width * 9) / 16) : 0;
+        const fallbackViewportHeight = viewportHeight > 0 ? Math.round(viewportHeight * 0.32) : 180;
+        const rawHeight = height || paddingTop || ratioHeight || fallbackViewportHeight;
+        const maxHeight = viewportHeight > 0 ? Math.max(220, Math.round(viewportHeight * 0.7)) : rawHeight;
+        const resolvedHeight = Math.max(180, Math.min(rawHeight, maxHeight));
+        const usesPaddingAspect = width > 0 && paddingTop > 0 && (paddingTop / width) > 0.25;
+
+        return {
+            containerStyles: {
+                overflow: "hidden",
+                height: "auto",
+                minHeight: `${resolvedHeight}px`,
+                ...(usesPaddingAspect ? {paddingTop: "0"} : {})
+            },
+            wrapperStyles: {
+                position: "relative",
+                display: "block",
+                width: "100%",
+                minHeight: `${resolvedHeight}px`,
+                aspectRatio: "16 / 9",
+                background: "#000",
+                overflow: "hidden",
+                zIndex: "2147483646"
+            },
+            iframeStyles: {
+                position: "absolute",
+                inset: "0",
+                width: "100%",
+                height: "100%",
+                border: "none",
+                display: "block",
+                background: "#000"
+            }
+        };
+    }
+
+    function applyInlineStyles(element, styles) {
+        Object.entries(styles || {}).forEach(([propertyName, propertyValue]) => {
+            if (propertyValue === undefined || propertyValue === null || propertyValue === "") {
+                return;
+            }
+            element.style[propertyName] = propertyValue;
+        });
+    }
 
     class BaseConsumer {
         constructor() {
@@ -442,20 +521,37 @@ const superVip = (function () {
                             document.addEventListener("fullscreenchange", cleanup);
                             _CONFIG_.fullscreenCleanupBound = true;
                         }
+                        const initialRect = container.getBoundingClientRect();
+                        const initialStyle = window.getComputedStyle(container);
+                        const frameLayout = buildPlayerFrameLayout({
+                            isMobile: !!_CONFIG_.isMobile,
+                            containerRect: initialRect,
+                            containerStyle: {
+                                paddingTop: initialStyle.paddingTop
+                            },
+                            viewportHeight: window.innerHeight || document.documentElement.clientHeight || 0
+                        });
                         $(container).empty();
                         util.reomveVideo();
-                        if (window.getComputedStyle(container).position === "static") {
+                        if (initialStyle.position === "static") {
                             container.style.position = "relative";
                         }
-                        container.style.overflow = "hidden";
-                        let iframeDivCss = "position:absolute;top:0;left:0;width:100%;height:100%;background:#000;overflow:hidden;z-index:2147483646;";
-                        if (_CONFIG_.isMobile) {
-                            iframeDivCss = "position:absolute;top:0;left:0;width:100%;height:450px;background:#000;overflow:hidden;z-index:2147483646;";
-                        }
-                        if (_CONFIG_.isMobile && window.location.href.indexOf("iqiyi.com") !== -1) {
-                            iframeDivCss = "position:absolute;top:0;left:0;width:100%;height:450px;background:#000;overflow:hidden;z-index:2147483646;margin-top:-56.25%;";
-                        }
-                        $(container).append(`<div class="${_CONFIG_.iframeWrapperClass}" style="${iframeDivCss}"><iframe src="${url}" frameborder="0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen referrerpolicy="no-referrer" style="width:100%;height:100%;border:none;display:block;background:#000;"></iframe></div>`);
+                        applyInlineStyles(container, frameLayout.containerStyles);
+
+                        const iframeWrapper = document.createElement("div");
+                        iframeWrapper.className = _CONFIG_.iframeWrapperClass;
+                        applyInlineStyles(iframeWrapper, frameLayout.wrapperStyles);
+
+                        const iframe = document.createElement("iframe");
+                        iframe.src = url;
+                        iframe.frameBorder = "0";
+                        iframe.allow = "autoplay; encrypted-media; fullscreen";
+                        iframe.allowFullscreen = true;
+                        iframe.referrerPolicy = "no-referrer";
+                        applyInlineStyles(iframe, frameLayout.iframeStyles);
+
+                        iframeWrapper.appendChild(iframe);
+                        container.appendChild(iframeWrapper);
                     }
                 });
         }
