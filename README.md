@@ -53,8 +53,7 @@
 4. 检查是否存在以下类似选项，并确认已开启：
    - **允许用户脚本**
    - **允许此扩展运行用户脚本**
-   - **允许访问站点数据**
-   - **允许在此网站上运行**
+   - **站点访问权限：在所有站点上**
 
 **请默认把这一步当成必做项。**  
 如果这些权限没有开启，脚本即使安装成功，也可能完全不运行。
@@ -116,16 +115,6 @@
 - **Android：** 推荐安装 `AdGuard for Android` App
 - **iPhone / iPad：** 推荐安装 `AdGuard for iOS` App，并开启 Safari 保护
 
-### 使用前请先了解
-
-- **AdGuard 浏览器扩展** 只保护当前浏览器，不是整台设备级拦截。  
-  官方文档：<https://adguard.com/kb/adguard-browser-extension/>
-- **AdGuard for Android / iOS App** 属于设备级拦截工具，通常比浏览器扩展更适合移动端。  
-  Android 官方介绍：<https://adguard.com/en/article/adblock-for-android.html>  
-  iOS 官方文档：<https://adguard.com/kb/adguard-for-ios/>
-- **即使安装了 AdGuard，也不能保证所有解析接口广告都能完全拦截。**  
-  特别是移动端第三方解析页广告、同页跳转广告、接口站自带广告位，仍有可能漏拦。
-
 ### 桌面端安装教程（Windows / macOS）
 
 #### 方案一：安装 AdGuard 浏览器扩展（推荐）
@@ -141,15 +130,6 @@ AdGuard 官方说明：浏览器扩展支持 `Chrome`、`Firefox`、`Edge`、`Op
 3. 点击「安装」「添加到浏览器」或「获取」。
 4. 安装完成后，确保扩展已启用。
 
-#### 常用浏览器官方入口
-
-- **Chrome / Chromium：** Chrome Web Store  
-  <https://adguard.com/kb/adguard-browser-extension/installation/>
-- **Edge：** Edge Add-ons  
-  <https://adguard.com/kb/adguard-browser-extension/installation/>
-- **Firefox：** Firefox Add-ons  
-  <https://adguard.com/kb/adguard-browser-extension/installation/>
-
 #### 建议配置
 
 1. 安装完成后，点击浏览器工具栏中的 AdGuard 图标。
@@ -157,13 +137,7 @@ AdGuard 官方说明：浏览器扩展支持 `Chrome`、`Firefox`、`Edge`、`Op
 3. 保持过滤器自动更新为开启。
 4. 如果某个解析页仍有广告，可尝试使用 AdGuard 的「屏蔽此元素」功能手动隐藏。
 
-#### 适用说明
-
-- 适合 `PC 端` 使用。
-- 对网页广告、弹层、浮窗、横幅广告通常有效。
-- 如果你希望整台电脑都被保护，而不仅仅是浏览器，建议直接使用 AdGuard 的完整桌面程序。
-
-### Android 安装教程（推荐）
+### Android 安装教程
 
 #### 推荐方案：安装 AdGuard for Android App
 
@@ -202,7 +176,6 @@ AdGuard 官方说明：完整的 Android 版应用无法上架 Google Play，需
 
 #### Android 端注意事项
 
-- **AdGuard 不能与其他 VPN 同时工作**（官方说明中提到本地 VPN 模式受 Android 系统限制）。
 - **部分轻量浏览器兼容性可能不稳定**。如果某些浏览器广告仍多，建议优先改用 `Edge`、`Chrome`、`Firefox` 或 `Samsung Internet` 测试。
 - **即使开启 HTTPS 过滤，也仍可能漏拦第三方解析页广告**，特别是解析站自带广告、同页跳转广告或动态脚本广告。
 
