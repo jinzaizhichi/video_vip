@@ -117,8 +117,6 @@
 
 ### 桌面端安装教程（Windows / macOS）
 
-#### 方案一：安装 AdGuard 浏览器扩展（推荐）
-
 AdGuard 官方说明：浏览器扩展支持 `Chrome`、`Firefox`、`Edge`、`Opera`、`Yandex Browser`。  
 官方文档：<https://adguard.com/kb/adguard-browser-extension/availability/>
 
@@ -138,8 +136,6 @@ AdGuard 官方说明：浏览器扩展支持 `Chrome`、`Firefox`、`Edge`、`Op
 4. 如果某个解析页仍有广告，可尝试使用 AdGuard 的「屏蔽此元素」功能手动隐藏。
 
 ### Android 安装教程
-
-#### 推荐方案：安装 AdGuard for Android App
 
 AdGuard 官方说明：完整的 Android 版应用无法上架 Google Play，需要从 AdGuard 官网或支持的应用商店下载安装。  
 官方安装文档：<https://adguard.com/kb/adguard-for-android/installation/>  
@@ -174,14 +170,12 @@ AdGuard 官方说明：完整的 Android 版应用无法上架 Google Play，需
 
 官方应用管理文档：<https://adguard.com/kb/adguard-for-android/features/app-management/>
 
-#### Android 端注意事项
+#### 注意事项
 
 - **部分轻量浏览器兼容性可能不稳定**。如果某些浏览器广告仍多，建议优先改用 `Edge`、`Chrome`、`Firefox` 或 `Samsung Internet` 测试。
 - **即使开启 HTTPS 过滤，也仍可能漏拦第三方解析页广告**，特别是解析站自带广告、同页跳转广告或动态脚本广告。
 
 ### iPhone / iPad 安装教程
-
-#### 推荐方案：安装 AdGuard for iOS
 
 官方安装文档：<https://adguard.com/kb/adguard-for-ios/installation/>  
 Safari 保护文档：<https://adguard.com/kb/adguard-for-ios/features/safari-protection/>
@@ -200,7 +194,7 @@ Safari 保护文档：<https://adguard.com/kb/adguard-for-ios/features/safari-pr
    官方文档明确建议：为获得最佳过滤质量，请保持所有内容拦截器开启。
 3. 如果需要更强的 Safari 过滤体验，可继续查看 AdGuard 的高级保护和 Safari Web Extension 相关说明。
 
-#### iOS 端注意事项
+#### 注意事项
 
 - iOS 的广告拦截能力受 Safari 和系统机制限制。
 - 即使安装 AdGuard，第三方解析页广告也**不保证全部拦截**。
