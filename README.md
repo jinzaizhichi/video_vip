@@ -41,6 +41,24 @@
 - **Opera**：[Tampermonkey](https://addons.opera.com/extensions/details/tampermonkey-beta/)
 - **Maxthon**：[Violentmonkey](http://extension.maxthon.com/detail/index.php?view_id=1680)
 
+#### 脚本管理器权限提醒
+
+安装 `Tampermonkey / 篡改猴`、`Violentmonkey` 等脚本管理器后，**请手动检查并开启「允许用户脚本」或类似权限**，否则脚本可能不会运行。
+
+常见检查方法如下：
+
+1. 打开当前浏览器的 `扩展` 或 `插件` 页面
+2. 找到你已安装的脚本管理器（如 `Tampermonkey / 篡改猴`）
+3. 打开该扩展的详情页
+4. 检查是否存在以下类似选项，并确认已开启：
+   - **允许用户脚本**
+   - **允许此扩展运行用户脚本**
+   - **允许访问站点数据**
+   - **允许在此网站上运行**
+
+**请默认把这一步当成必做项。**  
+如果这些权限没有开启，脚本即使安装成功，也可能完全不运行。
+
 #### 手机端（Android）
 
 - **Firefox**：[Greasemonkey](https://addons.mozilla.org/firefox/addon/greasemonkey/)、[Tampermonkey](https://addons.mozilla.org/firefox/addon/tampermonkey/) 或 [Violentmonkey](https://addons.mozilla.org/firefox/addon/violentmonkey/)
@@ -49,6 +67,12 @@
 - **UC**：[Tampermonkey](https://www.tampermonkey.net/?browser=ucweb&ext=dhdg)
 - **Kiwi**：[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) 或 [Violentmonkey](https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag)
 - **X浏览器**：（不需要安装插件）
+  - 自带用户脚本能力
+  - **优点：** 安装方便
+  - **缺点：** 对复杂脚本、第三方解析页和广告拦截场景兼容性不如桌面浏览器稳定
+- **其他 Android 浏览器：**
+  - 不保证都能稳定运行用户脚本
+  - 如遇脚本不生效、按钮不显示、解析页兼容问题，请优先换到 `Kiwi` 或桌面端测试
 
 #### 手机端（iOS）
 
@@ -65,11 +89,158 @@
 3. 确认安装权限
 4. 刷新目标视频网站页面
 
+#### 如果脚本安装后没有生效，请优先检查
+
+1. 脚本管理器是否已启用
+2. 脚本是否已成功安装并处于开启状态
+3. 浏览器中是否已开启 **允许用户脚本** 或类似权限
+4. 当前网站是否在脚本支持范围内
+5. 是否有广告拦截器、隐私插件或浏览器设置阻止脚本运行
+
 ### 3. 使用方法
 - **左上角有VIP的悬浮按钮，点一下VIP下面的按钮（默认是'关'），点一下变成'开'，然后在VIP那里可以选解析源**
 - **手动解析**：点击页面左侧的"VIP"按钮，选择解析接口
 - **自动解析**：点击"开"按钮启用自动解析功能
 - **移动按钮**：右键拖拽VIP按钮到任意位置
+
+---
+
+## 🛡 广告拦截器安装与配置教程（强烈建议）
+
+本脚本调用的解析接口均来自第三方站点。**部分接口页面可能会出现广告、弹层、跳转按钮或误导性内容**。  
+这些广告不属于脚本本身生成的内容，脚本也**无法保证 100% 屏蔽所有第三方广告**。
+
+为获得更好的体验，建议搭配 **AdGuard 广告拦截器** 使用：
+
+- **桌面端：** 推荐安装 `AdGuard Browser Extension` 浏览器扩展
+- **Android：** 推荐安装 `AdGuard for Android` App
+- **iPhone / iPad：** 推荐安装 `AdGuard for iOS` App，并开启 Safari 保护
+
+### 使用前请先了解
+
+- **AdGuard 浏览器扩展** 只保护当前浏览器，不是整台设备级拦截。  
+  官方文档：<https://adguard.com/kb/adguard-browser-extension/>
+- **AdGuard for Android / iOS App** 属于设备级拦截工具，通常比浏览器扩展更适合移动端。  
+  Android 官方介绍：<https://adguard.com/en/article/adblock-for-android.html>  
+  iOS 官方文档：<https://adguard.com/kb/adguard-for-ios/>
+- **即使安装了 AdGuard，也不能保证所有解析接口广告都能完全拦截。**  
+  特别是移动端第三方解析页广告、同页跳转广告、接口站自带广告位，仍有可能漏拦。
+
+### 桌面端安装教程（Windows / macOS）
+
+#### 方案一：安装 AdGuard 浏览器扩展（推荐）
+
+AdGuard 官方说明：浏览器扩展支持 `Chrome`、`Firefox`、`Edge`、`Opera`、`Yandex Browser`。  
+官方文档：<https://adguard.com/kb/adguard-browser-extension/availability/>
+
+#### 安装步骤
+
+1. 打开 AdGuard 浏览器扩展官方说明页：  
+   <https://adguard.com/kb/adguard-browser-extension/installation/>
+2. 根据你的浏览器，进入对应的官方扩展商店页面。
+3. 点击「安装」「添加到浏览器」或「获取」。
+4. 安装完成后，确保扩展已启用。
+
+#### 常用浏览器官方入口
+
+- **Chrome / Chromium：** Chrome Web Store  
+  <https://adguard.com/kb/adguard-browser-extension/installation/>
+- **Edge：** Edge Add-ons  
+  <https://adguard.com/kb/adguard-browser-extension/installation/>
+- **Firefox：** Firefox Add-ons  
+  <https://adguard.com/kb/adguard-browser-extension/installation/>
+
+#### 建议配置
+
+1. 安装完成后，点击浏览器工具栏中的 AdGuard 图标。
+2. 确保广告拦截处于启用状态。
+3. 保持过滤器自动更新为开启。
+4. 如果某个解析页仍有广告，可尝试使用 AdGuard 的「屏蔽此元素」功能手动隐藏。
+
+#### 适用说明
+
+- 适合 `PC 端` 使用。
+- 对网页广告、弹层、浮窗、横幅广告通常有效。
+- 如果你希望整台电脑都被保护，而不仅仅是浏览器，建议直接使用 AdGuard 的完整桌面程序。
+
+### Android 安装教程（推荐）
+
+#### 推荐方案：安装 AdGuard for Android App
+
+AdGuard 官方说明：完整的 Android 版应用无法上架 Google Play，需要从 AdGuard 官网或支持的应用商店下载安装。  
+官方安装文档：<https://adguard.com/kb/adguard-for-android/installation/>  
+官方浏览器广告排查文档（中文）：<https://adguard.com/zh_cn/support/adguard_for_android/doesnt_block_ads/in_browser.html>
+
+#### 安装步骤
+
+1. 在手机浏览器中打开 AdGuard Android 官方下载页：  
+   <https://adguard.com/apk>
+2. 下载 `adguard.apk`。
+3. 如果系统提示「禁止安装未知来源应用」：
+   - 点击系统弹窗中的「设置」
+   - 允许当前浏览器安装未知来源应用
+4. 返回安装界面，点击「安装」。
+5. 安装完成后，打开 AdGuard。
+
+#### 首次配置步骤
+
+1. 打开 AdGuard 首页，确认**总保护开关已开启**。
+2. 打开「保护」选项卡，确认 **广告拦截** 已开启。
+3. 打开「设置」→「过滤」→「网络」，确认 **HTTPS 过滤** 已开启。  
+   这是官方排查移动端网页广告时明确要求检查的关键项。
+4. 打开「设置」→「过滤」→「过滤器」→「广告过滤器」，确认 **AdGuard 基本过滤器** 已开启。
+5. 建议保持过滤器自动更新开启。
+
+#### 建议补充配置
+
+1. 打开「应用管理」。
+2. 找到你常用的视频浏览器（如 `Edge`、`Chrome`、`Firefox`、`Samsung Internet`）。
+3. 确保该浏览器的流量已通过 AdGuard 过滤。
+4. 如果浏览器页面广告仍明显漏拦，可在 AdGuard 内检查该浏览器是否被排除过滤。
+
+官方应用管理文档：<https://adguard.com/kb/adguard-for-android/features/app-management/>
+
+#### Android 端注意事项
+
+- **AdGuard 不能与其他 VPN 同时工作**（官方说明中提到本地 VPN 模式受 Android 系统限制）。
+- **部分轻量浏览器兼容性可能不稳定**。如果某些浏览器广告仍多，建议优先改用 `Edge`、`Chrome`、`Firefox` 或 `Samsung Internet` 测试。
+- **即使开启 HTTPS 过滤，也仍可能漏拦第三方解析页广告**，特别是解析站自带广告、同页跳转广告或动态脚本广告。
+
+### iPhone / iPad 安装教程
+
+#### 推荐方案：安装 AdGuard for iOS
+
+官方安装文档：<https://adguard.com/kb/adguard-for-ios/installation/>  
+Safari 保护文档：<https://adguard.com/kb/adguard-for-ios/features/safari-protection/>
+
+#### 安装步骤
+
+1. 打开 `App Store`。
+2. 搜索 `AdGuard`。
+3. 找到 `AdGuard - adblock&privacy`，点击获取并安装。
+4. 安装完成后，打开 AdGuard。
+
+#### 建议配置
+
+1. 在 AdGuard 中开启 **Safari Protection**。
+2. 进入 Safari 相关设置后，**尽量保持所有 Content Blockers 处于启用状态**。  
+   官方文档明确建议：为获得最佳过滤质量，请保持所有内容拦截器开启。
+3. 如果需要更强的 Safari 过滤体验，可继续查看 AdGuard 的高级保护和 Safari Web Extension 相关说明。
+
+#### iOS 端注意事项
+
+- iOS 的广告拦截能力受 Safari 和系统机制限制。
+- 即使安装 AdGuard，第三方解析页广告也**不保证全部拦截**。
+- 如果你使用的是非 Safari 浏览器，拦截效果可能不如 Safari 稳定。
+
+### 针对本脚本用户的特别提醒
+
+1. **本脚本不会主动投放广告。**
+2. **部分解析接口属于第三方站点，这些站点可能带有广告、弹层、下载提示、跳转按钮或伪装播放按钮。**
+3. **请不要轻信页面中的任何充值、下载、更新、加群、中奖、安装 App 等提示。**
+4. **如遇广告误导，请直接关闭当前解析页或切换其他解析接口。**
+5. **移动端广告拦截效果通常弱于桌面端。**
+6. **如果某个解析接口广告太多，建议不要继续使用该接口。**
 
 ---
 
@@ -104,6 +275,9 @@
     -   如果某个解析接口存在侵权行为，请联系**该接口的提供方或站长**处理。
     -   本插件仅为免费发布的工具，不承担任何法律责任。
 5.  **广告提醒：** 部分解析接口页面可能包含广告，**请大家切勿轻信广告内容**。请谨慎辨别！🧐
+    -   本脚本不会主动投放广告。
+    -   第三方解析接口页面若出现广告、跳转、下载提示、伪装播放按钮，均与接口提供方有关。
+    -   强烈建议搭配 `AdGuard` 等广告拦截器使用，但即便如此，也**不能保证移动端 100% 无广告**。
 6.  **问题反馈：** 如遇到问题，**请务必提供完整的视频 URL 地址**，以便快速定位和解决问题！🙏
 7.  **版权声明：** 本工具仅供学习和研究使用，请尊重版权，支持正版。建议在试用后购买正版会员支持内容创作者。
 
